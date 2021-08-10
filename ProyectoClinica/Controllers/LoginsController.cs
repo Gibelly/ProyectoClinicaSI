@@ -51,6 +51,11 @@ namespace ProyectoClinica.Controllers
             ViewData["UserTypeId"] = new SelectList(_context.UserTypes, "UserTypeId", "Type");
             return View();
         }
+        public IActionResult Login()
+        {
+           
+            return View();
+        }
 
         // POST: Logins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
