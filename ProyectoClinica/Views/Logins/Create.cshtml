@@ -3,7 +3,16 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<head>
+    <style>
+        body {
+            background-image: url('img/fondo.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
 <h1>Create</h1>
 
 <h4>Login</h4>
@@ -48,6 +57,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
