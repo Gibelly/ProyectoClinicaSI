@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -52,9 +53,31 @@ namespace ProyectoClinica.Controllers
             return View();
         }
         public IActionResult Login()
-        {
+        { 
            
-            return View();
+             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(Login login)
+        {
+            var usuarios = await _context.Logins.ToListAsync();
+          
+
+            if (ModelState.IsValid)
+            {
+                if (usuarios.Any(u => u.User == login.User && u.Password == login.Password) )
+                {
+                    if (usuarios.Where(u => u.UserTypeId.))
+                    {
+
+                    }
+                    return RedirectToAction("Privacy", "Home");
+                }
+            }
+
+            return View(login);
         }
 
         // POST: Logins/Create
