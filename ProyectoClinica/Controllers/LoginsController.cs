@@ -62,6 +62,18 @@ namespace ProyectoClinica.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(Login login)
         {
+<<<<<<< HEAD
+            var usuarios = await _context.Logins.ToListAsync();
+
+
+            if (ModelState.IsValid)
+            {
+                if (usuarios.Any(u => u.User == login.User && u.Password == login.Password) )
+                {
+                    if (login.UserTypeId == 1)
+                    {
+                        return RedirectToAction("Index", "Home");
+=======
            
             if (ModelState.IsValid)
             {
@@ -76,6 +88,7 @@ namespace ProyectoClinica.Controllers
                     if (user.UserTypeId== 1)
                     {
                         return RedirectToAction("Privacy", "Home");
+>>>>>>> 23007e4dd72ee04f7c97f74f166eb76bf43f193e
                     }
                     else if (user.UserTypeId == 2)
                     {

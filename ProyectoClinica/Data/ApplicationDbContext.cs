@@ -16,5 +16,9 @@ namespace ProyectoClinica.Data
 
         public DbSet<Login> Logins { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
+
+        public DbSet<Patient> Patients { get; set; }
+
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }
