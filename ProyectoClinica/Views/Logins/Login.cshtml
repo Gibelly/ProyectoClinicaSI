@@ -4,38 +4,60 @@
     ViewData["Title"] = "Create";
 }
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important">
+        <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="btn btn-outline-light" asp-action="Create" asp-controller="Logins">Registrarse <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+            </form>
+        </div>
+    </nav>
+
 <h1 class="text-center" style="color:aliceblue">Iniciar Sesión</h1>
 
 <h4 class="text-center" style="color:aliceblue">Login</h4>
 <hr />
 
-<body >
-     <div class="container">
+
+<body>
+
+    <div class="container">
 
         <div class="row">
 
-             <div class="col-lg-5">
-             </div>
+            <div class="col-lg-5">
+            </div>
 
-             <div class="col-lg-7">
-                 <div class="row">
-                      <form asp-action="Login" class="text-center" method="post">
+            <div class="col-lg-7">
+                <div class="row">
+                    <form asp-action="Login" class="text-center" method="post">
 
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          
-                        <div class="form-group">
-                          <label asp-for="User" class="control-label text-center" style="font-family:'Century Gothic'; font-weight:bold" ></label>
-                          <input asp-for="User" class="form-control" />
-                          <span asp-validation-for="User" class="text-danger"></span>
-                        </div>
-          
-                        <div class="form-group">
-                          <label asp-for="Password" class="control-label text-center" style="font-family:'Century Gothic'; font-weight:bold"></label>
-                          <input asp-for="Password" class="form-control" type="password" />
-                          <span asp-validation-for="Password" class="text-danger"></span>
-                         </div>
 
                         <div class="form-group">
+                            <label asp-for="User" class="control-label text-center" style="font-family:'Century Gothic'; font-weight:bold"></label>
+                            <input asp-for="User" class="form-control" />
+                            <span asp-validation-for="User" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label text-center" style="font-family:'Century Gothic'; font-weight:bold"></label>
+                            <input asp-for="Password" class="form-control" type="password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+<<<<<<< HEAD
                             @foreach (var item in Model.TypeUser)
                             {
                                
@@ -43,19 +65,23 @@
                             }
 
                         </div>
+=======
+                            <input type="submit" value="Ingresar" class="btn btn-outline-dark" />
+                        </div>
 
-                       </form>
+                    </form>
 
-                 </div>
-             </div>
-                                
-          
+                </div>
+            </div>
+>>>>>>> 23007e4dd72ee04f7c97f74f166eb76bf43f193e
+
+
         </div>
-       
+
     </div>
 </body>
 
-   
+
 
 
 
