@@ -63,15 +63,15 @@ namespace ProyectoClinica.Controllers
         public async Task<IActionResult> Login(Login login)
         {
             var usuarios = await _context.Logins.ToListAsync();
-          
+
 
             if (ModelState.IsValid)
             {
                 if (usuarios.Any(u => u.User == login.User && u.Password == login.Password) )
                 {
-                    if (usuarios.Where(u => u.UserTypeId.))
+                    if (login.UserTypeId == 1)
                     {
-
+                        return RedirectToAction("Index", "Home");
                     }
                     return RedirectToAction("Privacy", "Home");
                 }
