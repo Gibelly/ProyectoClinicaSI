@@ -80,15 +80,14 @@ namespace ProyectoClinica.Controllers
                     if (user.UserTypeId== 1)
                     {
                         return RedirectToAction("Privacy", "Home");
-
                     }
                     else if (user.UserTypeId == 2)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Patient");
                     }
                     else if (user.UserTypeId == 3)
                     {
-                        return RedirectToAction("Index", "Logins");
+                        return RedirectToAction("MenuRecepcion", "Patient");
                     }
                     else
                     {
