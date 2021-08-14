@@ -1,0 +1,66 @@
+﻿@model ProyectoClinica.Models.Patient
+
+@{
+    ViewData["Title"] = "MenuRecepcion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</nav>
+<hr />
+<body style="background-color:dimgrey">
+    <br />
+    <h1 style="text-align: center; color: aliceblue; font-family: 'Century Gothic'">Menu Doctor</h1>
+
+    <br /><br /><br />
+
+    <div class="container" style="margin-left: 285px">
+        <div class="row">
+            <div class="col">
+                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style="background-color: transparent !important; border-radius: 15px; " asp-action="Index" asp-controller="Appointment">
+                    <img class="col-md-12 m-0 p-0 btn btn-outline-light" src="~/img/cita-medica.png" />
+                </a>
+            </div>
+            <div class="col order-5">
+
+            </div>
+            <div class="col order-1">
+                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style=" background-color: transparent !important; border-radius: 15px; " asp-action="Patients" asp-controller="Diagnosis">
+                    <img class="col-md-12 m-0 p-0 btn btn-outline-light" src="~/img/registros-medicos.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

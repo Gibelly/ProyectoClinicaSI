@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete";
+    var id = @ViewContext.RouteData.Values["id"];
 }
 
 <h1>Delete</h1>
@@ -39,7 +40,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdDiagnosis" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" asp-route="@Model.PacienteId" /> |
+        <a asp-action="Index" asp-route="@Model.PacienteId">Back to List</a>
     </form>
 </div>

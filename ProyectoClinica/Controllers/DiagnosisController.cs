@@ -25,6 +25,7 @@ namespace ProyectoClinica.Controllers
             var applicationDbContext = _context.Diagnoses.Include(d => d.Patient);
             return View(await applicationDbContext.ToListAsync());
         }
+        
 
         // GET: Diagnosis/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,10 +46,21 @@ namespace ProyectoClinica.Controllers
             return View(diagnosis);
         }
 
+        public IActionResult MenuDoctor()
+        {
+
+            return View();
+        }      
+
+        public async Task<IActionResult> Patients()
+        {
+            return View(await _context.Patients.ToListAsync());
+        }
+
         // GET: Diagnosis/Create
         public IActionResult Create()
         {
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel");
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Name");
             return View();
         }
 
@@ -57,15 +69,16 @@ namespace ProyectoClinica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis)
+        public async Task<IActionResult> Create([Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis, int? id)
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(diagnosis);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Name", diagnosis.PacienteId);
             return View(diagnosis);
         }
 
@@ -82,7 +95,7 @@ namespace ProyectoClinica.Controllers
             {
                 return NotFound();
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Name", diagnosis.PacienteId);
             return View(diagnosis);
         }
 
@@ -118,7 +131,7 @@ namespace ProyectoClinica.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Name", diagnosis.PacienteId);
             return View(diagnosis);
         }
 

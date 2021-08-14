@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var id = @ViewContext.RouteData.Values["id"];
 }
 
 <h1>Edit</h1>
@@ -34,7 +35,7 @@
                 <span asp-validation-for="PacienteId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" asp-route="@Model.PacienteId" />
             </div>
         </form>
     </div>

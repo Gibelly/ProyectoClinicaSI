@@ -79,7 +79,7 @@ namespace ProyectoClinica.Controllers
 
                     if (user.UserTypeId== 1)
                     {
-                        return RedirectToAction("Privacy", "Home");
+                        return RedirectToAction("MenuDoctor", "Diagnosis");
                     }
                     else if (user.UserTypeId == 2)
                     {
