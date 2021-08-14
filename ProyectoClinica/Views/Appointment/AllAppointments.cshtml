@@ -1,17 +1,10 @@
-﻿@model IEnumerable<ProyectoClinica.Models.Patient>
+﻿@model IEnumerable<ProyectoClinica.Models.Appointment>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<style>
-    body {
-        background-image: url('img/fondo.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-    }
-</style>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important">
     <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica</a>
@@ -35,32 +28,16 @@
     </div>
 </nav>
 <hr />
+<h1>Index</h1>
 <body style="background-color:dimgrey">
-
-    <h1>Pacientes</h1>
-
-  
-
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayNameFor(model => model.DateAppo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Age)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Direction)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cel)
+                    @Html.DisplayNameFor(model => model.Patient)
                 </th>
                 <th></th>
             </tr>
@@ -70,31 +47,18 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.DateAppo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
+                        @Html.DisplayFor(modelItem => item.Patient.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Age)
+                        @Html.DisplayFor(modelItem => item.Patient.LastName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Direction)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cel)
-                    </td>
-                    <td>
-                        <a asp-action="Create" asp-route-id="@item.IdPaciente">Agregar Diagnostico</a> |
-                        <a asp-action="Index" asp-route-id="@item.IdPaciente">Ver Diagnosticos</a> |
-                       
-                    </td>
+
                 </tr>
             }
         </tbody>
     </table>
-
+    
 </body>

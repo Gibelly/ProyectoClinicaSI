@@ -5,45 +5,70 @@
 
     var id = @ViewContext.RouteData.Values["id"];
 }
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-lg-0" style="margin-left:720px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="MenuDoctor" asp-controller="Diagnosis">Volver al Menu <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="Login" asp-controller="Logins">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</nav>
+<hr />
 <h1>Create</h1>
 
 <h4>Diagnosis</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Symptoms" class="control-label"></label>
-                <input asp-for="Symptoms" class="form-control" />
-                <span asp-validation-for="Symptoms" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Exams" class="control-label"></label>
-                <input asp-for="Exams" class="form-control" />
-                <span asp-validation-for="Exams" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prescription" class="control-label"></label>
-                <input asp-for="Prescription" class="form-control" />
-                <span asp-validation-for="Prescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PacienteId" class="control-label"></label>
-                <input asp-for="PacienteId" class="form-control" hidden value="@id" />
 
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary"  />
-            </div>
-        </form>
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Symptoms" class="control-label"></label>
+                    <input asp-for="Symptoms" class="form-control" />
+                    <span asp-validation-for="Symptoms" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Exams" class="control-label"></label>
+                    <input asp-for="Exams" class="form-control" />
+                    <span asp-validation-for="Exams" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prescription" class="control-label"></label>
+                    <input asp-for="Prescription" class="form-control" />
+                    <span asp-validation-for="Prescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PacienteId" class="control-label"></label>
+                    <input asp-for="PacienteId" class="form-control" hidden value="@id" />
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index" asp-route-id="@id" >Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index" asp-route-id="@id">Back to List</a>
+    </div>
+</body>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
