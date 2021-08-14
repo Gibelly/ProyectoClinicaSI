@@ -14,13 +14,13 @@ namespace ProyectoClinica.Models
 
         [DisplayName("Nombres")]
         [Required(ErrorMessage ="El nombre del paciente es obligatorio")]
-        [StringLength(70,ErrorMessage ="No debe tener mas de 40 carácteres")]
+        [StringLength(70,ErrorMessage ="No debe tener mas de 70 carácteres")]
         [MinLength(2, ErrorMessage = "No debe tener menos de 2 carácteres")]
         public string Name { get; set; }
 
         [DisplayName("Apellidos")]
         [Required(ErrorMessage = "El apellido del paciente es obligatorio")]
-        [StringLength(70, ErrorMessage = "No debe tener mas de 40 carácteres")]
+        [StringLength(70, ErrorMessage = "No debe tener mas de 70 carácteres")]
         [MinLength(2, ErrorMessage = "No debe tener menos de 2 carácteres")]
         public string LastName { get; set; }
 
@@ -42,5 +42,6 @@ namespace ProyectoClinica.Models
 
 
         public IEnumerable<Appointment> Appointments { get; set; }
+        public IEnumerable<Diagnosis> Diagnoses { get; set; }
     }
 }
