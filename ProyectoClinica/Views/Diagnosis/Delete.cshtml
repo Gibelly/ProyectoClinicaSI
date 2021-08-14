@@ -40,7 +40,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdDiagnosis" />
-        <input type="submit" value="Delete" class="btn btn-danger" asp-route="@Model.PacienteId" /> |
-        <a asp-action="Index" asp-route="@Model.PacienteId">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@Model.PacienteId" /> |
+        <a asp-action="Index" asp-route-id="@Model.PacienteId">Back to List</a>
     </form>
 </div>
