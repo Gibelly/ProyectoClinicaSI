@@ -69,16 +69,18 @@ namespace ProyectoClinica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis, int? id)
+        public async Task<IActionResult> Create([Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis)
         {
             if (ModelState.IsValid)
             {
                 
                 _context.Add(diagnosis);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Diagnosis", new { @id = diagnosis.PacienteId.ToString() });
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", diagnosis.PacienteId);
+
+            ViewData[" PacienteId "] = new SelectList(_context.Patients, " IdPaciente ", " IdPaciente ", diagnosis.PacienteId);
+
             return View(diagnosis);
         }
 
@@ -104,7 +106,7 @@ namespace ProyectoClinica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis)
+        public async Task<IActionResult> Edit(int id, [Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis )
         {
             if (id != diagnosis.IdDiagnosis)
             {
@@ -129,7 +131,7 @@ namespace ProyectoClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index","Diagnosis","hola",diagnosis.PacienteId.ToString());
+                return RedirectToAction("Index","Diagnosis",new {@id= diagnosis.PacienteId.ToString()});
             }
             ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", diagnosis.PacienteId);
             return View(diagnosis);
@@ -162,7 +164,7 @@ namespace ProyectoClinica.Controllers
             var diagnosis = await _context.Diagnoses.FindAsync(id);
             _context.Diagnoses.Remove(diagnosis);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Diagnosis", new { @id = diagnosis.PacienteId.ToString() });
         }
 
         private bool DiagnosisExists(int id)
