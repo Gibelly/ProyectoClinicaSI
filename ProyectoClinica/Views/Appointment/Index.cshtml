@@ -4,44 +4,68 @@
     ViewData["Title"] = "Index";
     var id = @ViewContext.RouteData.Values["id"];
 }
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica <i class="fas fa-stethoscope"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<h1>Index</h1>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Salir <span class="sr-only">(current)</span><i class="fas fa-sign-out-alt"></i></a>
+                </li>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateAppo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            @if (item.PacienteId.ToString() == id.ToString())
+            </ul>
+        </form>
+    </div>
+</nav>
+<h2 h2 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">Citas del Paciente <i class="fas fa-clinic-medical"></i></h2>
+<hr />
+
+<body style="background-color:gray">
+    <div>
+        <a class="btn btn-outline-light" asp-action="Patients">Volver a los Pacientes</a>
+    </div>
+    <br />
+    <table class="table table table-striped table-dark table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateAppo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateAppo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Patient.Name)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdAppointment">Delete</a>
-                </td>
-            }
+                <tr>
+                    @if (item.PacienteId.ToString() == id.ToString())
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateAppo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Patient.Name)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.IdAppointment">Editar <i class="fas fa-edit"></i></a> |
+                            <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.IdAppointment">Detalles <i class="fas fa-info-circle"></i></a> |
+                            <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.IdAppointment">Eliminar <i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    }
 
-        </tr>
-}
-    </tbody>
-</table>
-<div>
-    <a asp-action="Patients">Back to List</a>
-</div>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</body>
+
