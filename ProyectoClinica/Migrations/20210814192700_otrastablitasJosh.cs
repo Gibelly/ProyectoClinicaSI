@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProyectoClinica.Migrations
 {
-    public partial class inicio : Migration
+    public partial class otrastablitasJosh : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,24 @@ namespace ProyectoClinica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    IdPaciente = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direction = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cel = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.IdPaciente);
                 });
 
             migrationBuilder.CreateTable(
@@ -166,6 +184,48 @@ namespace ProyectoClinica.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    IdAppointment = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateAppo = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PacienteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.IdAppointment);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Patients_PacienteId",
+                        column: x => x.PacienteId,
+                        principalTable: "Patients",
+                        principalColumn: "IdPaciente",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Diagnoses",
+                columns: table => new
+                {
+                    IdDiagnosis = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Symptoms = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Exams = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Prescription = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
+                    PacienteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Diagnoses", x => x.IdDiagnosis);
+                    table.ForeignKey(
+                        name: "FK_Diagnoses_Patients_PacienteId",
+                        column: x => x.PacienteId,
+                        principalTable: "Patients",
+                        principalColumn: "IdPaciente",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Logins",
                 columns: table => new
                 {
@@ -188,6 +248,11 @@ namespace ProyectoClinica.Migrations
                         principalColumn: "UserTypeId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_PacienteId",
+                table: "Appointments",
+                column: "PacienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -229,6 +294,11 @@ namespace ProyectoClinica.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Diagnoses_PacienteId",
+                table: "Diagnoses",
+                column: "PacienteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Logins_UserTypeId",
                 table: "Logins",
                 column: "UserTypeId");
@@ -236,6 +306,9 @@ namespace ProyectoClinica.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Appointments");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -252,6 +325,9 @@ namespace ProyectoClinica.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Diagnoses");
+
+            migrationBuilder.DropTable(
                 name: "Logins");
 
             migrationBuilder.DropTable(
@@ -259,6 +335,9 @@ namespace ProyectoClinica.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "UserTypes");

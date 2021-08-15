@@ -10,8 +10,8 @@ using ProyectoClinica.Data;
 namespace ProyectoClinica.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210812013227_addModelPatientAndAppoint")]
-    partial class addModelPatientAndAppoint
+    [Migration("20210814192700_otrastablitasJosh")]
+    partial class otrastablitasJosh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,6 +221,54 @@ namespace ProyectoClinica.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProyectoClinica.Models.Appointment", b =>
+                {
+                    b.Property<int>("IdAppointment")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAppo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdAppointment");
+
+                    b.HasIndex("PacienteId");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("ProyectoClinica.Models.Diagnosis", b =>
+                {
+                    b.Property<int>("IdDiagnosis")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Exams")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PacienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Prescription")
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("Symptoms")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdDiagnosis");
+
+                    b.HasIndex("PacienteId");
+
+                    b.ToTable("Diagnoses");
+                });
+
             modelBuilder.Entity("ProyectoClinica.Models.Login", b =>
                 {
                     b.Property<int>("Id")
@@ -251,6 +299,42 @@ namespace ProyectoClinica.Migrations
                     b.HasIndex("UserTypeId");
 
                     b.ToTable("Logins");
+                });
+
+            modelBuilder.Entity("ProyectoClinica.Models.Patient", b =>
+                {
+                    b.Property<int>("IdPaciente")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cel")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("Direction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.HasKey("IdPaciente");
+
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("ProyectoClinica.Models.UserType", b =>
@@ -320,6 +404,28 @@ namespace ProyectoClinica.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProyectoClinica.Models.Appointment", b =>
+                {
+                    b.HasOne("ProyectoClinica.Models.Patient", "Patient")
+                        .WithMany("Appointments")
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("ProyectoClinica.Models.Diagnosis", b =>
+                {
+                    b.HasOne("ProyectoClinica.Models.Patient", "Patient")
+                        .WithMany("Diagnoses")
+                        .HasForeignKey("PacienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("ProyectoClinica.Models.Login", b =>
                 {
                     b.HasOne("ProyectoClinica.Models.UserType", "Type")
@@ -329,6 +435,13 @@ namespace ProyectoClinica.Migrations
                         .IsRequired();
 
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("ProyectoClinica.Models.Patient", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("Diagnoses");
                 });
 
             modelBuilder.Entity("ProyectoClinica.Models.UserType", b =>
