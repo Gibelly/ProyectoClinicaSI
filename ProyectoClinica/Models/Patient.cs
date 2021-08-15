@@ -34,7 +34,7 @@ namespace ProyectoClinica.Models
         [DisplayName("Dirección")]
         public string Direction { get; set; }
 
-        [DisplayName("Número de Celular")]
+        [DisplayName("Celular")]
         [Required(ErrorMessage = "El télefono del paciente es obligatorio")]
         [StringLength(40, ErrorMessage = "No debe tener mas de 40 carácteres")]
         [MinLength(2, ErrorMessage = "No debe tener menos de 2 carácteres")]
