@@ -20,8 +20,15 @@ namespace ProyectoClinica.Controllers
         }
 
         // GET: Patient
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
+            if (search == null)
+            {
+                return View(await _context.Patients.ToListAsync());
+            }
+
+            return View(await _context.Patients.Where(p => p.Name.Contains(search)).ToListAsync());
+
             return View(await _context.Patients.ToListAsync());
         }
 
