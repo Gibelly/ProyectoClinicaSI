@@ -4,34 +4,57 @@
     ViewData["Title"] = "Create";
     var id = @ViewContext.RouteData.Values["id"];
 }
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica <i class="fas fa-stethoscope"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<h1>Create</h1>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<h4>Appointment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DateAppo" class="control-label"></label>
-                <input asp-for="DateAppo" class="form-control" />
-                <span asp-validation-for="DateAppo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PacienteId" class="control-label"></label>
-                <input asp-for="PacienteId" class="form-control" hidden value="@id" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Salir <span class="sr-only">(current)</span><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+
+            </ul>
         </form>
     </div>
-</div>
+</nav>
 
-<div>
-    <a asp-action="Index" asp-route-id="@id">Back to List</a>
-</div>
+<h2 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">Agregar Cita <i class="fas fa-clinic-medical"></i></h2>
+<hr />
+
+<body style="background-color:gray">
+    <div class="container">
+        <div class="row" style="margin-left:433px">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="DateAppo" class="control-label" style="font-family:'Century Gothic'; font-weight:bold"></label>
+                        <input asp-for="DateAppo" class="form-control" />
+                        <span asp-validation-for="DateAppo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="PacienteId" class="form-control" hidden value="@id" />
+                    </div>
+                    <div class="form-group" style="margin-left:7px">
+                        <input type="submit" value="Agregar" class="btn btn-outline-light" />
+                        <a asp-action="Patients" class="btn btn-outline-light">Regresar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+   
+
+   
+</body>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
