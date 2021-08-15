@@ -4,54 +4,97 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica <i class="fas fa-stethoscope"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Patient</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direction)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direction)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cel)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="IdPaciente" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Salir <span class="sr-only">(current)</span><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</nav>
+
+<h2 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">Eliminar Paciente <i class="fas fa-clinic-medical"></i></h2>
+<h4 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">¿Esta seguro de eliminar este paciente?</h4>
+
+<hr />
+
+<body style="background-color:gray">
+    <div class="container">
+        <div class="row" style="margin-left:430px">
+
+            <hr />
+
+            <dl class="row">
+
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-weight:bold; font-size:20px">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10" style="        font-family: 'Century Gothic';font-size: 20px">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-weight:bold ; font-size:20px">
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+                <dd class="col-sm-10" style="font-family: 'Century Gothic'; font-size: 20px">
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-weight:bold ; font-size:20px">
+                    @Html.DisplayNameFor(model => model.Age)
+                </dt>
+                <dd class="col-sm-10" style="font-family: 'Century Gothic'; font-size: 20px">
+                    @Html.DisplayFor(model => model.Age)
+                </dd>
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-size:20px; font-weight:bold">
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+                <dd class="col-sm-10" style="font-family:'Century Gothic' ; font-size:20px">
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-weight:bold ; font-size:20px">
+                    @Html.DisplayNameFor(model => model.Direction)
+                </dt>
+                <dd class="col-sm-10" style="font-family:'Century Gothic' ; font-size:20px">
+                    @Html.DisplayFor(model => model.Direction)
+                </dd>
+                <dt class="col-sm-2" style="font-family:'Century Gothic'; font-weight:bold ; font-size:20px">
+                    @Html.DisplayNameFor(model => model.Cel)
+                </dt>
+                <dd class="col-sm-10" style="font-family:'Century Gothic' ; font-size:20px">
+                    @Html.DisplayFor(model => model.Cel)
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <div class="row">
+
+                    <input type="hidden" asp-for="IdPaciente" />
+                    <div class="form-group col-4">
+                        <input type="submit" value="Borrar" class="btn btn-outline-light" />
+                    </div>
+                    <div class="form-group col-4">
+                        <a asp-action="Index" class="btn btn-outline-light">Regresar</a>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+

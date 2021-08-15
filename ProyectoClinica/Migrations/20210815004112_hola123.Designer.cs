@@ -10,8 +10,8 @@ using ProyectoClinica.Data;
 namespace ProyectoClinica.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210814195314_arreglando Modelos")]
-    partial class arreglandoModelos
+    [Migration("20210815004112_hola123")]
+    partial class hola123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
