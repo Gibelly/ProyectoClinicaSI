@@ -22,6 +22,8 @@ namespace ProyectoClinica.Controllers
         // GET: Diagnosis
         public async Task<IActionResult> Index()
         {
+
+
             var applicationDbContext = _context.Diagnoses.Include(d => d.Patient);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -52,8 +54,15 @@ namespace ProyectoClinica.Controllers
             return View();
         }      
 
-        public async Task<IActionResult> Patients()
+        public async Task<IActionResult> Patients(string search)
         {
+            if (search == null)
+            {
+                return View(await _context.Patients.ToListAsync());
+            }
+
+            return View(await _context.Patients.Where(p => p.Name.Contains(search)).ToListAsync());
+
             return View(await _context.Patients.ToListAsync());
         }
 
