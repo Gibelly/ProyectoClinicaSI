@@ -25,6 +25,7 @@ namespace ProyectoClinica.Controllers
             var applicationDbContext = _context.Diagnoses.Include(d => d.Patient);
             return View(await applicationDbContext.ToListAsync());
         }
+        
 
         // GET: Diagnosis/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,10 +46,21 @@ namespace ProyectoClinica.Controllers
             return View(diagnosis);
         }
 
+        public IActionResult MenuDoctor()
+        {
+
+            return View();
+        }      
+
+        public async Task<IActionResult> Patients()
+        {
+            return View(await _context.Patients.ToListAsync());
+        }
+
         // GET: Diagnosis/Create
         public IActionResult Create()
         {
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel");
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente");
             return View();
         }
 
@@ -61,11 +73,14 @@ namespace ProyectoClinica.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(diagnosis);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Diagnosis", new { @id = diagnosis.PacienteId.ToString() });
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+
+            ViewData[" PacienteId "] = new SelectList(_context.Patients, " IdPaciente ", " IdPaciente ", diagnosis.PacienteId);
+
             return View(diagnosis);
         }
 
@@ -82,7 +97,7 @@ namespace ProyectoClinica.Controllers
             {
                 return NotFound();
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", diagnosis.PacienteId);
             return View(diagnosis);
         }
 
@@ -91,7 +106,7 @@ namespace ProyectoClinica.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis)
+        public async Task<IActionResult> Edit(int id, [Bind("IdDiagnosis,Symptoms,Exams,Prescription,PacienteId")] Diagnosis diagnosis )
         {
             if (id != diagnosis.IdDiagnosis)
             {
@@ -116,9 +131,9 @@ namespace ProyectoClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Diagnosis",new {@id= diagnosis.PacienteId.ToString()});
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", diagnosis.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", diagnosis.PacienteId);
             return View(diagnosis);
         }
 
@@ -149,7 +164,7 @@ namespace ProyectoClinica.Controllers
             var diagnosis = await _context.Diagnoses.FindAsync(id);
             _context.Diagnoses.Remove(diagnosis);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Diagnosis", new { @id = diagnosis.PacienteId.ToString() });
         }
 
         private bool DiagnosisExists(int id)

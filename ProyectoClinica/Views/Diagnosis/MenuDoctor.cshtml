@@ -1,5 +1,4 @@
-﻿
-@model ProyectoClinica.Models.Patient
+﻿@model ProyectoClinica.Models.Patient
 
 @{
     ViewData["Title"] = "MenuRecepcion";
@@ -30,32 +29,27 @@
 <hr />
 <body style="background-color:dimgrey">
     <br />
-    <h1 style="text-align: center; color: aliceblue; font-family: 'Century Gothic'">Menu Recepcionista</h1>
+    <h1 style="text-align: center; color: aliceblue; font-family: 'Century Gothic'">Menu Doctor</h1>
 
     <br /><br /><br />
 
     <div class="container" style="margin-left: 285px">
         <div class="row">
             <div class="col">
-                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style="background-color: transparent !important; border-radius: 15px; " asp-action="Patients" asp-controller="Appointment">
+                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style="background-color: transparent !important; border-radius: 15px; " asp-action="AllAppointments" asp-controller="Appointment">
                     <img class="col-md-12 m-0 p-0 btn btn-outline-light" src="~/img/cita-medica.png" />
                 </a>
             </div>
             <div class="col order-5">
-               
+
             </div>
             <div class="col order-1">
-                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style=" background-color: transparent !important; border-radius: 15px; " asp-action="Index" asp-controller="Patient">
-                    <img class="col-md-12 m-0 p-0 btn btn-outline-light" src="~/img/registros-medicos.png"  />
+                <a type="button" name="yes" class="col-sm-5 m-0 p-0  " style=" background-color: transparent !important; border-radius: 15px; " asp-action="Patients" asp-controller="Diagnosis">
+                    <img class="col-md-12 m-0 p-0 btn btn-outline-light" src="~/img/registros-medicos.png" />
                 </a>
             </div>
         </div>
     </div>
-
-
-
-   
-
 
 
 </body>

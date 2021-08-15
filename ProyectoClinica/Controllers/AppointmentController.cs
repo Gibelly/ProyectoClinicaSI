@@ -26,6 +26,18 @@ namespace ProyectoClinica.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Patients()
+        {
+            return View(await _context.Patients.ToListAsync());
+        }
+
+        public async Task<IActionResult> AllAppointments()
+        {
+            var applicationDbContext = _context.Appointments.Include(a => a.Patient);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+
         // GET: Appointment/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +60,7 @@ namespace ProyectoClinica.Controllers
         // GET: Appointment/Create
         public IActionResult Create()
         {
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel");
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente");
             return View();
         }
 
@@ -63,9 +75,9 @@ namespace ProyectoClinica.Controllers
             {
                 _context.Add(appointment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Appointment", new { @id = appointment.PacienteId.ToString() });
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", appointment.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", appointment.PacienteId);
             return View(appointment);
         }
 
@@ -82,7 +94,7 @@ namespace ProyectoClinica.Controllers
             {
                 return NotFound();
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", appointment.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", appointment.PacienteId);
             return View(appointment);
         }
 
@@ -116,9 +128,9 @@ namespace ProyectoClinica.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Appointment", new { @id = appointment.PacienteId.ToString() });
             }
-            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "Cel", appointment.PacienteId);
+            ViewData["PacienteId"] = new SelectList(_context.Patients, "IdPaciente", "IdPaciente", appointment.PacienteId);
             return View(appointment);
         }
 
@@ -149,7 +161,7 @@ namespace ProyectoClinica.Controllers
             var appointment = await _context.Appointments.FindAsync(id);
             _context.Appointments.Remove(appointment);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Appointment", new { @id = appointment.PacienteId.ToString() });
         }
 
         private bool AppointmentExists(int id)

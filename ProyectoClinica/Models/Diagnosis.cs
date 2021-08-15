@@ -29,7 +29,7 @@ namespace ProyectoClinica.Models
 
         public int PacienteId { get; set; }
 
-        [ForeignKey("PacienteId")]
+        [ForeignKey("IdPaciente")]
         public Patient Patient { get; set; }
 
 
