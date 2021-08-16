@@ -8,6 +8,11 @@
 
 }
 
+function usuarioMalo() {
+
+    alert("Usuario no registrado");
+}
+
 const patients_input_search = document.getElementsById("txt-search");
 
 patients_input_search.addEventListener("keyup", function (event) {
