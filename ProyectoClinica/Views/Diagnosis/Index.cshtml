@@ -7,60 +7,89 @@
 
 }
 
-<h1>Index</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica <i class="fas fa-stethoscope"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Symptoms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Exams)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Prescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Salir <span class="sr-only">(current)</span><i class="fas fa-sign-out-alt"></i></a>
 
-@foreach (var item in Model) {
-        <tr>
-            @if (item.PacienteId.ToString() == id.ToString())
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Symptoms)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Exams)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Prescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Patient.Name)
-                </td>
+                </li>
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdDiagnosis">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdDiagnosis">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdDiagnosis">Delete</a>
-                </td>
-            }
-            
+            </ul>
+        </form>
+    </div>
+</nav>
 
-        </tr>
+<h2 h2 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">Diagnosticos del Paciente <i class="fas fa-clinic-medical"></i></h2>
+<hr />
+
+<body style="background-color:gray">
+
+
+    <div class="row">
+
+        <a class="btn btn-outline-light" asp-action="Patients" asp-controller="Diagnosis" style="margin-left:20px">Regresar</a>
+    </div>
+    <br />
+
+    <div class="row">
+        <table class="table table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Symptoms)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Exams)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Prescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Patient.Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @if (item.PacienteId.ToString() == id.ToString())
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Symptoms)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Exams)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Prescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Patient.Name)
+                            </td>
+
+                         
+                        }
+
+
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+        </div>
         
-}
-    </tbody>
-
-</table>
-<div>
-    <a asp-action="Patients">Back to List</a>
-</div>
+</body>

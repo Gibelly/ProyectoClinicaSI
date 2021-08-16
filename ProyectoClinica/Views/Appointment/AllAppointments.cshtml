@@ -6,35 +6,40 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important">
-    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:black !important">
+    <a class="navbar-brand" href="#" style="color:aliceblue">Clinica Medica <i class="fas fa-stethoscope"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <form class="form-inline my-2 my-lg-0" style="margin-left:720px">
+        <form class="form-inline my-2 my-lg-0" style="margin-left:800px">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="btn btn-outline-light" asp-action="MenuDoctor" asp-controller="Diagnosis">Volver al Menu <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="btn btn-outline-light" asp-action="Login" asp-controller="Logins">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                    <a class="btn btn-outline-light" asp-action="" asp-controller="">Salir <span class="sr-only">(current)</span><i class="fas fa-sign-out-alt"></i></a>
                 </li>
 
             </ul>
         </form>
     </div>
 </nav>
+<h2 h2 style="margin-top:20px; text-align: center; color: aliceblue; font-family: 'Century Gothic' ">Citas del Paciente <i class="fas fa-clinic-medical"></i></h2>
 <hr />
-<h1>Index</h1>
-<body style="background-color:dimgrey">
-    <table class="table">
+
+<body style="background-color:grey">
+    <div>
+        <a class="btn btn-outline-light" asp-action="MenuDoctor" asp-controller="Diagnosis">Regresar</a>
+    </div>
+    <br />
+    <table class="table table table-striped table-dark table-bordered table-hover">
         <thead>
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.DateAppo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Patient)
@@ -60,5 +65,5 @@
             }
         </tbody>
     </table>
-    
+
 </body>
