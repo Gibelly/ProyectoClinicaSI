@@ -42,6 +42,15 @@
         <a class="btn btn-outline-light" asp-action="MenuRecepcion" asp-controller="Patient">Regresar</a>
     </div>
     <br />
+    <div class="row">
+        <div class="form-group">
+            <input type="text" id="txt-search" placeholder="Buscar..." class="form-control-plaintext" style="background-color:white !important;" />
+
+        </div>
+        <div class="form-group">
+            <a style="margin-left:8px" class="btn btn-outline-dark" onclick="patients_search()" id="search-link">Buscar <i class="fas fa-search-plus"></i></a>
+        </div>
+    </div>
     <table class="table table-striped table-dark table-bordered table-hover">
         <thead>
             <tr>
@@ -99,3 +108,5 @@
     </table>
 
 </body>
+
+<script src="~/js/Patients.js" asp-append-version="true"></script>

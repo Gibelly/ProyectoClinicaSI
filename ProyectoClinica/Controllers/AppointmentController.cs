@@ -26,8 +26,14 @@ namespace ProyectoClinica.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Patients()
+        public async Task<IActionResult> Patients(string search)
         {
+            if (search == null)
+            {
+                return View(await _context.Patients.ToListAsync());
+            }
+
+            return View(await _context.Patients.Where(p => p.Name.Contains(search)).ToListAsync());
             return View(await _context.Patients.ToListAsync());
         }
 
