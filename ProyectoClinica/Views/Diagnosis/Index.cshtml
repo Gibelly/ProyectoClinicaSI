@@ -54,9 +54,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Prescription)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Patient.Name)
-                    </th>
+
                     <th></th>
                 </tr>
             </thead>
@@ -64,30 +62,32 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        @if (item.PacienteId.ToString() == id.ToString())
-                        {
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Symptoms)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Exams)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Prescription)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Patient.Name)
-                            </td>
+                <tr>
+                    @if (item.PacienteId.ToString() == id.ToString())
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Symptoms)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Exams)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prescription)
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-light" asp-action="Edit" asp-route-id="@item.IdDiagnosis">Editar <i class="fas fa-edit"></i></a> |
+                            <a class="btn btn-outline-light" asp-action="Details" asp-route-id="@item.IdDiagnosis">Detalles <i class="fas fa-info-circle"></i></a> |
+                            <a class="btn btn-outline-light" asp-action="Delete" asp-route-id="@item.IdDiagnosis">Eliminar <i class="fas fa-trash-alt"></i></a>
+                        </td>
 
-                         
-                        }
+                    }
 
 
-                    </tr>
+                </tr>
 
                 }
             </tbody>
+            
 
         </table>
         </div>

@@ -39,10 +39,16 @@
                 @Html.DisplayFor(model => model.DateAppo)
             </dd>
             <dt class="col-sm-3" style="font-size:20px">
-                @Html.DisplayNameFor(model => model.Patient)
+                @Html.DisplayNameFor(model => model.Patient.Name)
             </dt>
             <dd class="col-sm-9" style="font-size:20px">
                 @Html.DisplayFor(model => model.Patient.Name)
+            </dd>
+            <dt class="col-sm-3" style="font-size:20px">
+                @Html.DisplayNameFor(model => model.Patient.LastName)
+            </dt>
+            <dd class="col-sm-9" style="font-size:20px">
+                @Html.DisplayFor(model => model.Patient.LastName)
             </dd>
         </dl>
 

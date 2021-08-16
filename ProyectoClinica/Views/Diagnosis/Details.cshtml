@@ -30,7 +30,7 @@
 
 <body style="background-color:gray">
     <div class="container">
-        <div class="row" style="margin-left:430px">
+        <div class="row" style="margin-left:300px">
 
             <dl class="row">
                 <dt class="col-sm-4" style="font-family:'Century Gothic'; font-weight:bold; font-size:20px">
@@ -51,19 +51,13 @@
                 <dd class="col-sm-6" style="font-family: 'Century Gothic'; font-size: 20px">
                     @Html.DisplayFor(model => model.Prescription)
                 </dd>
-                <dt class="col-sm-4" style="font-family:'Century Gothic'; font-weight:bold; font-size:20px">
-                    @Html.DisplayNameFor(model => model.Patient)
-                </dt>
-                <dd class="col-sm-6" style="font-family: 'Century Gothic'; font-size: 20px">
-                    @Html.DisplayFor(model => model.Patient.Cel)
-                </dd>
+                
             </dl>
 
-            <div class="row">
+            <div class="row" style="margin-left:160px">
                 <div class="form-group col-4">
                     <a asp-action="Index" asp-controller="Diagnosis" asp-route-id="@Model.PacienteId" class="btn btn-outline-light">Regresar</a>
-                </div>
-                
+                </div>                
             </div>
 
         </div>
