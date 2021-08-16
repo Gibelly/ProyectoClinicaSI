@@ -63,10 +63,10 @@ namespace ProyectoClinica.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
-           
 
 
-           
+            
+
             if (ModelState.IsValid)
             {
                 var usuarios = from d in _context.Logins
@@ -74,31 +74,41 @@ namespace ProyectoClinica.Controllers
                                && d.Password == login.Password
                                select d;
 
-
+                
                 var user = usuarios.FirstOrDefault();
-
+                if (usuarios.Count().Equals(0))
+                {
+                    
+                    return RedirectToAction("Login");
+                    
+                }
+                else { 
                     if (user.UserTypeId== 1)
                     {
                         return RedirectToAction("MenuDoctor", "Diagnosis");
                     }
+<<<<<<< HEAD
                     else if (user.UserTypeId == 2)
                     {
                     // return RedirectToAction("Index", "Patient");
                     TempData["Mensaje"] = "Usuario Ya Existe, Verifique";
                 }
+=======
+>>>>>>> 0fb2f51d13d2f89025e5116abca8d9700b364bf3
                     else if (user.UserTypeId == 3)
                     {
                         return RedirectToAction("MenuRecepcion", "Patient");
                     }
-                    else
+                    else 
                     {
-                    return View(login);
+                    return RedirectToAction("Login");
+                    
                     }
-                   
-             
-            }
+                }
 
-            return View(login);
+            }
+            return RedirectToAction("Login");
+            
         }
 
         // POST: Logins/Create
