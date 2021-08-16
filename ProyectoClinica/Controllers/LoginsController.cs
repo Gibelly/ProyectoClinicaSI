@@ -83,8 +83,9 @@ namespace ProyectoClinica.Controllers
                     }
                     else if (user.UserTypeId == 2)
                     {
-                        return RedirectToAction("Index", "Patient");
-                    }
+                    // return RedirectToAction("Index", "Patient");
+                    TempData["Mensaje"] = "Usuario Ya Existe, Verifique";
+                }
                     else if (user.UserTypeId == 3)
                     {
                         return RedirectToAction("MenuRecepcion", "Patient");
